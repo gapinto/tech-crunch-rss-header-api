@@ -14,7 +14,7 @@ const handler: Handler = async (event: APIGatewayEvent, context: Context, cb: Ca
 
     try {
         const feeds = await parse.parseURL('http://feeds.feedburner.com/TechCrunch/');
-        this.chachedPosts = feeds.items.map(({ 
+        chachedPosts = feeds.items.map(({ 
                 title, 
                 link, 
                 creator, 
@@ -25,10 +25,10 @@ const handler: Handler = async (event: APIGatewayEvent, context: Context, cb: Ca
         }) => {
             return { title, link, creator, pubDate, description, encondedContent, categories };
          });
-        const resp = { statusCode: 200, body: this.chachedPosts };
+        const resp = { statusCode: 200, body: chachedPosts };
         cb(null, resp);
     } catch (error) {
-        const resp = { statusCode: 200, body: this.chachedPosts };
+        const resp = { statusCode: 200, body: chachedPosts };
         cb(null, resp);
     }
 };
