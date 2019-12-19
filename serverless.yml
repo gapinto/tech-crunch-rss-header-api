@@ -1,30 +1,37 @@
 service: tech-crunch-rss-reader-api
 
+package:
+  exclude:
+    - node_modules/serverless-offline/**
+
 provider:
+  profile: serverless-admin
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs12.x
   memorySize: 128 # set the maximum memory of the Lambdas in Megabytes
   timeout: 10 # the timeout is 10 seconds (default is 6 seconds)
-  region: localhost
-  profile: serverless-admin # Profile configured on credential file aws path /home/youruser/.aws
-  stage: dev #prod test dev
+  region: us-east-1
+  stage: test
   environment:
-    IS_OFFLINE: 'true'
+    TECH_CRUNCH_FEED_URL: 'http://feeds.feedburner.com/TechCrunch/'
 plugins:
   - serverless-offline
   - serverless-plugin-typescript
+
 custom:
   serverless-offline:
     host: 0.0.0.0
     port: 4000
   stage: ${opt:stage, self:provider.stage}
-  basePath: 'api'
+
 functions:
   rss-reader:
-    handler: posts/handlers/rss-reader.handler
+    handler: src/handlers/rss-reader.handler
     events:
       - http:
-          path: ${self:custom.basePath}/posts
+          path: api/posts
           method: get
+          cors: true
+              
 
     
