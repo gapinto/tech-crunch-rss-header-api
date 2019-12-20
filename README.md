@@ -24,7 +24,7 @@ tech-crunch-rss-reader-api
 * Install project dependencies. `cd tech-crunch-rss-reader-api` and type,
 ```
   npm install
-  
+```
 ## Links
 * [serverless-offline plugin](https://github.com/dherault/serverless-offline)
 
@@ -32,7 +32,6 @@ tech-crunch-rss-reader-api
 We have used [serverless-offline plugin](https://github.com/dherault/serverless-offline)
 
 * Inside of the root folder execute the follow command:
-
 ```
   sls offline
 ```
