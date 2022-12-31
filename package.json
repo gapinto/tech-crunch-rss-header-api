@@ -10,7 +10,7 @@
     "serverless": "^1.27.3",
     "serverless-offline": "^5.12.1",
     "serverless-plugin-typescript": "^1.1.5",
-    "ts-loader": "^2.3.7",
+    "ts-loader": "^9.4.2",
     "typescript": "^2.5.2"
   },
   "scripts": {
